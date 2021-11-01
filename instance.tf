@@ -3,6 +3,9 @@ resource "aws_instance" "ec2" {
   instance_type     = "t2.micro"
   availability_zone = var.ZONE1
   key_name          = "terraform-devops-key"
+  subnet_id	    = module.vpc.public_subnets[0]
+  count		    = var.INSTANCE_COUNT
+  vpc_security_group_ids = [aws_security_group.mywebsg.id]
   tags = {
     Name = "Terraform-ansible-ec2"
   }
@@ -18,6 +21,11 @@ resource "aws_instance" "ec2" {
       user        = var.USERNAME
       private_key = file("./terraform-devops-key.pem")
     }
+  }
+
+ provisioner "local-exec" {
+    command = "chmod 600 /tmp/terraform-ansible-ec2.pem"
+	  
   }
 
   provisioner "local-exec" {
