@@ -2,7 +2,7 @@ resource "aws_security_group" "mywebsg" {
 
 name = "mywebsg"
 description = "Security Grup for my web app"
-vpc_id = "module.vpc.vpc_id"
+vpc_id = module.vpc.vpc_id
 
 egress{
 from_port = 0
