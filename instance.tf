@@ -23,7 +23,7 @@ resource "aws_instance" "ec2" {
   }
 
  provisioner "local-exec" {
-    command = "chmod 600 /tmp/terraform-ansible-ec2.pem"
+    command = "chmod 600 ./terraform-devops-key.pem"
 	  
   }
 
