@@ -4,7 +4,6 @@ resource "aws_instance" "ec2" {
   availability_zone = var.ZONE1
   key_name          = "terraform-devops-key"
   subnet_id	    = module.vpc.public_subnets[0]
-  count		    = var.INSTANCE_COUNT
   vpc_security_group_ids = [aws_security_group.mywebsg.id]
   tags = {
     Name = "Terraform-ansible-ec2"
