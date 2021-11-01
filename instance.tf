@@ -1,5 +1,5 @@
 resource "aws_instance" "ec2" {
-  ami               = "ami-0c1a7f89451184c8b"
+  ami               = var.AMIS
   instance_type     = "t2.micro"
   availability_zone = var.ZONE1
   key_name          = "terraform-devops-key"
