@@ -1,9 +1,9 @@
 variable AMIS{
-default= "ami-0c1a7f89451184c8b"
+default= "ami-041d6256ed0f2061c"
 }
 
 variable USERNAME {
-default = "ubuntu"
+default = "ec2-user"
 }
 
 variable INSTANCE_COUNT{
