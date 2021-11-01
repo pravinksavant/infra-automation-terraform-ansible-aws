@@ -10,7 +10,7 @@ pipeline {
         
         stage('Git Checkout...') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: '<your github URL>']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/pravinksavant/infra-automation-terraform-ansible-aws.git']]])
             }
         }
         
