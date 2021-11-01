@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    
+    environment {
+        AWS_ACCESS_KEY_ID = credentials ('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY =  credentials ('AWS_SECRET_ACCESS_KEY')
+    }
+
+    stages {
+        
+        stage('Git Checkout...') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: '<your github URL>']]])
+            }
+        }
+        
+        stage('Terraform Init...') {
+            steps {
+                sh 'terraform init -input=false'
+            }
+        }
+        
+          stage('Terraform plan...') {
+            steps {
+                sh 'terraform plan -input=false'
+            }
+        }
+        
+        stage('Terraform apply...') {
+            steps {
+                sh 'terraform apply -input=false -auto-approve'
+            }
+        }
+   }
+}
